@@ -3,62 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aadesh Bomble</title>
+    <title>Aadesh Bomble — Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; background: #f9fafb; }
-        .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
-        header { text-align: center; padding: 3rem 0; }
-        h1 { font-size: 2.5rem; color: #111; }
-        .subtitle { color: #666; font-size: 1.1rem; margin-top: 0.5rem; }
-        section { margin: 2rem 0; }
-        h2 { border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; margin-bottom: 1rem; color: #111; }
-        .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
-        .skills li { background: #e5e7eb; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem; }
-        .links a { display: inline-block; margin-right: 1rem; color: #2563eb; text-decoration: none; }
-        .links a:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 2rem; color: #999; font-size: 0.9rem; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+        header {
+            text-align: center;
+            padding: 3rem 0 2.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 2.5rem;
+        }
+        .avatar {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        h1 { font-size: 2.2rem; color: #0f172a; font-weight: 700; }
+        .subtitle { color: #64748b; font-size: 1.05rem; margin-top: 0.3rem; }
+        .header-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .header-links a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            transition: 0.2s;
+        }
+        .header-links a:hover { background: #eff6ff; border-color: #2563eb; }
+        .badge {
+            display: inline-block;
+            background: #2563eb;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        section { margin: 2.5rem 0; }
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        .about-text { color: #475569; font-size: 0.95rem; max-width: 700px; }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+        }
+        .skills-grid li {
+            background: #eef2ff;
+            color: #4338ca;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            transition: 0.2s;
+        }
+        .project-card:hover { border-color: #94a3b8; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .project-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .project-card h3 .icon { font-size: 1.2rem; }
+        .project-card .desc { color: #475569; font-size: 0.88rem; margin: 6px 0 10px; }
+        .project-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+        .project-card .tags span {
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.75rem;
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+        .project-card .links-row { display: flex; gap: 12px; }
+        .project-card .links-row a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+        .project-card .links-row a:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 0 1rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.6rem; }
+            .project-card { padding: 1rem; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
+            <div class="avatar">AB</div>
             <h1>Aadesh Bomble</h1>
-            <p class="subtitle">Computer Engineering Student | AI & Automation Enthusiast</p>
+            <p class="subtitle">Computer Engineering Student &bull; AI &amp; Automation Builder</p>
+            <div class="header-links">
+                <a href="https://github.com/aadeshbomble">GitHub</a>
+                <a href="https://linkedin.com/in/aadeshbomble">LinkedIn</a>
+                <a href="mailto:aadeshbomble1@gmail.com">Email</a>
+                <a href="https://aadeshbomble.github.io/portfolio/resume.html">Resume</a>
+            </div>
         </header>
 
         <section>
-            <h2>About Me</h2>
-            <p>Computer Engineering student passionate about AI/ML and automation. Currently building projects and learning every day.</p>
+            <h2>About</h2>
+            <p class="about-text">
+                Computer Engineering student with a background in Mechanical Engineering (Diploma).
+                Passionate about AI/ML, automation, and building practical tools that solve real problems.
+                I build desktop apps, Telegram bots, AI tutors, and developer tools — all open source.
+            </p>
         </section>
 
         <section>
             <h2>Skills</h2>
-            <ul class="skills">
+            <ul class="skills-grid">
                 <li>Python</li>
                 <li>C</li>
                 <li>Machine Learning</li>
-                <li>Git</li>
+                <li>AI / LLMs</li>
                 <li>Automation</li>
+                <li>Git / GitHub</li>
+                <li>React</li>
+                <li>Flask</li>
+                <li>Electron</li>
+                <li>Ollama</li>
+                <li>REST APIs</li>
+                <li>Linux</li>
             </ul>
         </section>
 
         <section>
             <h2>Projects</h2>
-            <ul>
-                <li><strong>File Organizer</strong> — Python script to auto-sort files by type</li>
-                <li><strong>More coming soon...</strong></li>
-            </ul>
+
+            <div class="project-card">
+                <h3><span class="icon">⚡</span> ZEN — AI Orchestration Desktop App</h3>
+                <div class="desc">
+                    Desktop app that connects local AI models (Ollama) with a Claude.ai-style interface.
+                    Smart model routing, streaming responses, file attachments, and cloud fallback via Gemini.
+                    Built with Electron + React + Python Flask.
+                </div>
+                <div class="tags">
+                    <span>Electron</span><span>React</span><span>Python</span><span>Flask</span><span>Ollama</span><span>Gemini</span>
+                </div>
+                <div class="links-row">
+                    <a href="https://github.com/aadeshbomble/zen">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><span class="icon">🧠</span> AI Study Partner</h3>
+                <div class="desc">
+                    Full-stack AI tutor web app. Create subjects, paste notes, and get personalized tutoring via Gemini AI.
+                    Generates smart quizzes, tracks progress, and adapts to your learning style.
+                    Built with Python Flask + Google Gemini API.
+                </div>
+                <div class="tags">
+                    <span>Python</span><span>Flask</span><span>Gemini API</span><span>SQLite</span><span>HTML/CSS/JS</span>
+                </div>
+                <div class="links-row">
+                    <a href="https://github.com/aadeshbomble/ai-study-partner">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><span class="icon">🔄</span> ZEN Fallback — Cloud AI MCP Server</h3>
+                <div class="desc">
+                    MCP server for opencode that routes complex/stuck local AI tasks to ChatGPT or Claude via browser automation.
+                    When local models fail at complex code or reasoning, this seamlessly escalates to cloud AI using your existing accounts.
+                </div>
+                <div class="tags">
+                    <span>TypeScript</span><span>MCP</span><span>Playwright</span><span>Browser Automation</span><span>opencode</span>
+                </div>
+                <div class="links-row">
+                    <a href="https://github.com/aadeshbomble/zen-fallback">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><span class="icon">🤖</span> Telegram Job Alert Bot</h3>
+                <div class="desc">
+                    Python-based Telegram bot that monitors job listings and sends real-time notifications.
+                    Filter by keywords, get instant alerts, and automate your job search.
+                    Deployed and running 24/7.
+                </div>
+                <div class="tags">
+                    <span>Python</span><span>Telegram API</span><span>Automation</span><span>Web Scraping</span>
+                </div>
+                <div class="links-row">
+                    <a href="https://github.com/aadeshbomble/job-alert-bot">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><span class="icon">📁</span> File Organizer</h3>
+                <div class="desc">
+                    Python script that automatically sorts files into categorized folders by extension type
+                    (Images, Documents, Audio, Video, Code, Archives). A practical automation tool for daily use.
+                </div>
+                <div class="tags">
+                    <span>Python</span><span>Automation</span><span>CLI</span>
+                </div>
+                <div class="links-row">
+                    <a href="https://github.com/aadeshbomble/file-organizer">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><span class="icon">🌐</span> Portfolio Website</h3>
+                <div class="desc">
+                    Personal portfolio site hosted on GitHub Pages. Clean, responsive design showcasing projects and skills.
+                    You're looking at it right now.
+                </div>
+                <div class="tags">
+                    <span>HTML</span><span>CSS</span><span>GitHub Pages</span>
+                </div>
+                <div class="links-row">
+                    <a href="https://github.com/aadeshbomble/portfolio">View on GitHub →</a>
+                </div>
+            </div>
         </section>
 
-        <section class="links">
-            <h2>Connect</h2>
-            <a href="https://github.com/aadeshbomble">GitHub</a>
-            <a href="https://linkedin.com/in/aadeshbomble">LinkedIn</a>
-            <a href="mailto:aadeshbomble1@gmail.com">Email</a>
-        </section>
-
-        <footer>© 2026 Aadesh Bomble</footer>
+        <footer>
+            &copy; 2026 Aadesh Bomble &bull; Built from scratch &bull; Open source
+        </footer>
     </div>
 </body>
 </html>
